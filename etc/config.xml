@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <fruitcake_email_advanced>
+            <smtp>
+                <host>localhost</host>
+                <port>25</port>
+                <transport>sendmail</transport>
+                <auth>plain</auth>
+                <ssl>none</ssl>
+            </smtp>
+        </fruitcake_email_advanced>
+    </default>
+</config>

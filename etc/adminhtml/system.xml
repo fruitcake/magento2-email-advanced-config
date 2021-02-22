@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="fruitcake" translate="label" sortOrder="101">
+            <label>Fruitcake</label>
+        </tab>
+        <section id="fruitcake_email_advanced" translate="label" type="text" sortOrder="512" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Email Advanced</label>
+            <tab>fruitcake</tab>
+            <resource>Fruitcake_EmailAdvancedConfig::smpt</resource>
+            <group id="smtp" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <label>SMTP Configuration</label>
+                <field id="transport" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Transport</label>
+                    <source_model>Fruitcake\EmailAdvancedConfig\Model\Config\Source\SmtpTransportType</source_model>
+                </field>
+
+                <field id="host" translate="label comment" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Host</label>
+                    <comment>Host</comment>
+                    <depends>
+                        <field id="transport">smtp</field>
+                    </depends>
+                </field>
+
+                <field id="port" translate="label comment" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Port</label>
+                    <comment>Port</comment>
+                    <depends>
+                        <field id="transport">smtp</field>
+                    </depends>
+                </field>
+
+                <field id="username" translate="label comment" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Username</label>
+                    <comment>Username</comment>
+                    <depends>
+                        <field id="transport">smtp</field>
+                    </depends>
+                </field>
+                <field id="password" translate="label comment" type="text" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Password</label>
+                    <comment>Username</comment>
+                    <depends>
+                        <field id="transport">smtp</field>
+                    </depends>
+                </field>
+                <field id="auth" translate="label" type="select" sortOrder="103" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth</label>
+                    <source_model>Fruitcake\EmailAdvancedConfig\Model\Config\Source\SmtpAuthType</source_model>
+                    <depends>
+                        <field id="transport">smtp</field>
+                    </depends>
+                </field>
+                <field id="ssl" translate="label" type="select" sortOrder="104" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SSL</label>
+                    <source_model>Fruitcake\EmailAdvancedConfig\Model\Config\Source\SmtpSslType</source_model>
+                    <depends>
+                        <field id="transport">smtp</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
