@@ -92,7 +92,6 @@ class SmtpTransport implements TransportInterface
 
         // When not enabled, fall back to Sendmail transport
         if (! $this->helper->isEnabled()) {
-            throw new \RuntimeException('Should be enabled');
             $this->laminasTransport = new Sendmail($parameters);
             return;
         }
