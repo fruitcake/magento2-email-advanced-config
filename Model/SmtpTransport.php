@@ -110,7 +110,7 @@ class SmtpTransport implements TransportInterface
         $ssl = $this->helper->getConfig('smtp/ssl');
 
         if ($ssl && $ssl !== 'none') {
-            $connectionConfig['ssl'] = $ssl;
+            $options['connection_config']['ssl'] = $ssl;
         }
 
         $this->laminasTransport = new Smtp(new SmtpOptions($options));
