@@ -123,6 +123,8 @@ class SmtpTransport implements TransportInterface
     {
         try {
             $laminasMessage = Message::fromString($this->message->getRawMessage())->setEncoding('utf-8');
+            $this->removeDuplicateHeaders($laminasMessage);
+
             if (2 === $this->isSetReturnPath && $this->returnPathValue) {
                 $laminasMessage->setSender($this->returnPathValue);
             } elseif (1 === $this->isSetReturnPath && $laminasMessage->getFrom()->count()) {
@@ -134,6 +136,25 @@ class SmtpTransport implements TransportInterface
             $this->laminasTransport->send($laminasMessage);
         } catch (\Exception $e) {
             throw new MailException(new Phrase($e->getMessage()), $e);
+        }
+    }
+
+    /**
+     * Fix an issue with duplicate headers (eg Content-Transfer-Encoding cannot occur twice for AWS SES)
+     * 
+     * @param Message $laminasMessage
+     */
+    protected function removeDuplicateHeaders(Message $laminasMessage)
+    {
+        $headers = clone $laminasMessage->getHeaders();
+        $laminasMessage->getHeaders()->clearHeaders();
+        $alreadySetHeaders = [];
+
+        foreach ($headers as $header) {
+            if (!in_array($header->getFieldName(), $alreadySetHeaders, true)) {
+                $laminasMessage->getHeaders()->addHeader($header);
+            }
+            $alreadySetHeaders[] = $header->getFieldName();
         }
     }
 
