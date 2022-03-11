@@ -100,15 +100,18 @@ class SmtpTransport implements TransportInterface
             'name' => 'localhost',
             'host' => $this->helper->getConfig('smtp/host'),
             'port' => $this->helper->getConfig('smtp/port'),
-            'connection_class' => $this->helper->getConfig('smtp/auth'),
             'connection_config' => [
                 'username' => $this->helper->getConfig('smtp/username'),
                 'password' => $this->helper->getConfig('smtp/password'),
             ]
         ];
 
-        $ssl = $this->helper->getConfig('smtp/ssl');
-
+        $auth = $this->helper->getConfig('smtp/auth');
+        if ($auth && $auth !== 'none') {
+            $options['connection_class'] = $auth;
+        }
+        
+        $ssl = $this->helper->getConfig('smtp/ssl');        
         if ($ssl && $ssl !== 'none') {
             $options['connection_config']['ssl'] = $ssl;
         }
