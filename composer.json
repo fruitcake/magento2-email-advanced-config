@@ -36,7 +36,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
-        "unit-test": "phpunit"
+     "unit-test": "phpunit Test/Unit"
   },
   "repositories": {
       "0": {
