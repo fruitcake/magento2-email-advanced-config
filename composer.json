@@ -38,6 +38,12 @@
   "scripts": {
         "unit-test": "phpunit"
   },
+  "repositories": {
+      "0": {
+          "type": "composer",
+          "url": "https://repo.magento.com/"
+      }
+  },
   "extra": {
     "branch-alias": {
       "dev-master": "1.0-dev"
