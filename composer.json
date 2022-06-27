@@ -18,7 +18,8 @@
     }
   ],
   "require": {
-    "php": "^7|^8"
+    "php": "^7|^8",
+     "magento/framework": "^102.0 || ^103.0"
   },
   "require-dev": {
       "phpunit/phpunit": "^8.5|^9.0"
