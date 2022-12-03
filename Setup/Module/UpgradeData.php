@@ -32,13 +32,11 @@ class UpgradeData implements UpgradeDataInterface
      * @param WriterInterface $configWriter
      * @param EncryptorInterface $encryptor
      */
-    public function __construct
-    (
+    public function __construct(
         ScopeConfigInterface $scopeConfig,
         WriterInterface $configWriter,
         EncryptorInterface $encryptor
-    )
-    {
+    ) {
         $this->scopeConfig = $scopeConfig;
         $this->configWriter = $configWriter;
         $this->encryptor = $encryptor;
@@ -49,12 +47,10 @@ class UpgradeData implements UpgradeDataInterface
      * @param ModuleContextInterface $context
      * @return void
      */
-    public function upgrade
-    (
-        ModuleDataSetupInterface $setup,
+    public function upgrade(
+        ModuleDataSetupInterface $setup, 
         ModuleContextInterface $context
-    )
-    {
+    ) {
         if (version_compare($context->getVersion(), '1.0.1') > 0) {
             $passwordPath = 'fruitcake_email_advanced/smtp/password';
             $password = $this->scopeConfig->getValue($passwordPath, ScopeInterface::SCOPE_STORE);
