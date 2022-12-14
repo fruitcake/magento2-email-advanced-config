@@ -57,9 +57,8 @@ class UpgradeData implements UpgradeDataInterface
     {
         if (version_compare($context->getVersion(), '1.0.1') < 0) {
             $passwordPath = 'fruitcake_email_advanced/smtp/password';
-            $password = $this->scopeConfig->getValue($passwordPath, ScopeInterface::SCOPE_STORE);
-
-            if ($password && !$this->encryptor->decrypt($password)) {
+            
+            if ($password = $this->scopeConfig->getValue($passwordPath, ScopeInterface::SCOPE_STORE)) {
                 $this->configWriter->save($passwordPath, $this->encryptor->encrypt($password));
             }
         }
