@@ -55,7 +55,7 @@ class UpgradeData implements UpgradeDataInterface
         ModuleContextInterface $context
     )
     {
-        if (version_compare($context->getVersion(), '1.0.1') > 0) {
+        if (version_compare($context->getVersion(), '1.0.1') < 0) {
             $passwordPath = 'fruitcake_email_advanced/smtp/password';
             $password = $this->scopeConfig->getValue($passwordPath, ScopeInterface::SCOPE_STORE);
 
