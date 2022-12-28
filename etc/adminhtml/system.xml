@@ -14,7 +14,7 @@
             <class>separator-top</class>
             <label>Email Advanced</label>
             <tab>fruitcake</tab>
-            <resource>Fruitcake_EmailAdvancedConfig::smpt</resource>
+            <resource>Fruitcake_EmailAdvancedConfig::smtp</resource>
             <group id="smtp" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                 <label>SMTP Configuration</label>
                 <field id="transport" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -45,13 +45,16 @@
                         <field id="transport">smtp</field>
                     </depends>
                 </field>
-                <field id="password" translate="label comment" type="text" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+
+                <field id="password" translate="label comment" type="obscure" sortOrder="102" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Password</label>
-                    <comment>Username</comment>
+                    <comment>Password</comment>
+                    <source_model>Magento\Config\Model\Config\Backend\Encrypted</source_model>
                     <depends>
                         <field id="transport">smtp</field>
                     </depends>
                 </field>
+
                 <field id="auth" translate="label" type="select" sortOrder="103" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Auth</label>
                     <source_model>Fruitcake\EmailAdvancedConfig\Model\Config\Source\SmtpAuthType</source_model>
@@ -59,6 +62,7 @@
                         <field id="transport">smtp</field>
                     </depends>
                 </field>
+
                 <field id="ssl" translate="label" type="select" sortOrder="104" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>SSL</label>
                     <source_model>Fruitcake\EmailAdvancedConfig\Model\Config\Source\SmtpSslType</source_model>
